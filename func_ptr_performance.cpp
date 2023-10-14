@@ -72,6 +72,40 @@ int main(int argc, char * argv[])
     duration = duration_cast<microseconds>(stop - start);
     std::cout << duration.count() / 1000000 << std::endl; // 4 seconds
     std::cout << j << std::endl;
+    
+    j = 0;
+    start = high_resolution_clock::now();
+    for(long i = 0; i < EXECUTIONS; i++) {
+        if(i%2 == 0)
+        {
+            func_ptr_map[0](j);
+        } 
+        else
+        {
+            func_ptr_map[1](j);
+        }
+    }
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    std::cout << duration.count() / 1000000 << std::endl; // 4 seconds
+    std::cout << j << std::endl;
+    
+    j = 0;
+    start = high_resolution_clock::now();
+    for(long i = 0; i < EXECUTIONS; i++) {
+        if(i%2 == 0)
+        {
+            add_1_ptr(j);
+        } 
+        else
+        {
+            add_2_ptr(j);
+        }
+    }
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    std::cout << duration.count() / 1000000 << std::endl; // 0 seconds
+    std::cout << j << std::endl;
     return 0;
 
 }
